@@ -31,6 +31,7 @@ void printList(struct Node *n)
         printf(" %d ", n->data);
         n = n->next;
     }
+    printf("\n");
 }
 
 int main()
