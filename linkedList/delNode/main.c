@@ -26,6 +26,8 @@ struct Node
     struct Node *next;
 };
 
+
+
 /* 
  * Given a reerence (pointer to a pointer) to the head of a list and an int,
  * insert a new node at the front of the list
@@ -45,7 +47,8 @@ void push(struct Node **head_ref, int new_data)
 void deleteNode(struct Node **head_ref, int key)
 {
     /* Store head node */
-    struct Node* temp = *head_ref, *prev;
+    struct Node* temp = *head_ref;
+    struct Node *prev;
 
     if (temp != NULL && temp->data == key)
     {
