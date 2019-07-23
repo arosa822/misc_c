@@ -54,6 +54,13 @@ int main()
     /* Insert 1 at the begining. 1 -> 7 -> 6 */
     push(&head,1);
 
+    /*  insert 4 at the end */
+
+    append(&head, 4);
+
+    insertAfter(head->next,8);
+
+
     /* append  */
 
     printList(head);
