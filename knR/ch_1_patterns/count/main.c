@@ -3,10 +3,10 @@
  *
  *       Filename:  main.c
  *
- *    Description:  practice
+ *    Description:  1.5.2 character counting
  *
  *        Version:  1.0
- *        Created:  07/24/2019 21:48:25
+ *        Created:  07/25/2019 
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -15,23 +15,17 @@
  *
  * =====================================================================================
  */
-
 #include<stdio.h>
 
-/*  copy input to output: 1st version */
-
+/*  count characters in input  */
 int main()
 {
-    int c;
-    while((c=getchar()) != EOF)
-    {
-        putchar(c);
-        
-    } 
-    printf(EOF);
-     
+    long nc;
+    nc = 0;
+    while(getchar() != EOF)
+        ++nc;
+    printf("%ld\n",nc);
 
     return 0;
 }
-
 
