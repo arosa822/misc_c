@@ -152,39 +152,55 @@ void add_node()
 void insert_at_first()
 {
     int info;
-    printf("\nEnter a number"
-            "(to be added at the front): ");
+    printf("\nEnter a number :");
     scanf("%d",&info);
     new = create_node(info);
 
+    /* check to see if there is a head  */
     if(first == last && first == NULL)
     {
-        printf("\nlinked list is empty, adding as first node");
         first = last = new;
         first->next = last->next = NULL;
         first->prev = last->prev = NULL;
     }
     else
     {
-        new->next = first;
         first->prev = new;
+        new->next = first;
+        new->prev = last;
         first = new; 
-        first->prev = last;
-        last->next = first; 
-        printf("\n new node has been added to the begining"); 
+        last->next = first;
+        printf("\nnode set to the front!");
     }
-
-
-
 }
 
 void insert_at_end()
 {
+    int info;
+    printf("\nEnter a number");
+    scanf("%d",&info);
+    new = createNode(info);
 
+    if(first = last && first == NULL)
+    {
+        first = last = new;
+        first->next = last->next = NULL;
+        first->prev = last->prev = NULL;
+    }
+    else
+    {
+        last->next = new;
+        new->prev = last;
+        last = new;
+        first->prev = last;
+        last->prev = first;
+        printf("\n node was inserted at the end of the list!");
+    }
 }
 
 void insert_at_position()
 {
+
 
 }
 
