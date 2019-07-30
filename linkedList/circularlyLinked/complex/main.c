@@ -179,9 +179,9 @@ void insert_at_end()
     int info;
     printf("\nEnter a number");
     scanf("%d",&info);
-    new = createNode(info);
+    new = create_node(info);
 
-    if(first = last && first == NULL)
+    if(first == last && first == NULL)
     {
         first = last = new;
         first->next = last->next = NULL;
@@ -200,7 +200,56 @@ void insert_at_end()
 
 void insert_at_position()
 {
+    int info, pos, i;
+    n *prevnode;
 
+    printf("\n enter the value that you would like to insert: ");
+    scanf("%d",&info);
+    printf("\n enter the position: ");
+    scanf("%d",&pos);
+    new = create_node(info);
+
+    if (first == last && first == NULL)
+    {
+        /*  if list is empty but user specified pos = 1 */
+        if(pos == 1)
+        {
+            first = last = new;
+            first->next = last->next = NULL;
+            first->prev = last->prev = NULL;
+        }
+        /* throw an error at all other cases when list is empty */
+        else 
+            printf("\n empty link list: cannot "
+                    "insert at given location.");
+    }
+    else
+    {
+        /*  throw another fit if the position is out of bounds */
+        if(number < pos)
+            printf("\nnode cannot be entered in that location");
+        else
+        {
+            for(ptr = first, i = 1; i <= number; i++)
+            {
+                prevnode = ptr;
+                ptr = ptr->next;
+                if(i==pos-1)
+                {
+                    prevnode->next = new;
+                    new->prev = prevnode;
+                    new->next = ptr;
+                    ptr->prev = new; 
+                    printf("\ninserted at position %d",pos);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void sort_list()
+{
 
 }
 
@@ -209,10 +258,6 @@ void delete_node_position()
 
 }
 
-void sort_list()
-{
-
-}
 
 void update()
 {
@@ -232,8 +277,6 @@ void display_from_beg()
 void display_in_rev()
 {
 }
-
-
 
 
 
