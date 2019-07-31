@@ -230,12 +230,17 @@ void insert_at_position()
             printf("\nnode cannot be entered in that location");
         else
         {
+            /*  cycle through all the nodes  */
             for(ptr = first, i = 1; i <= number; i++)
             {
+                /* store the node in prevnode */
                 prevnode = ptr;
+                /*  point to the next  */
                 ptr = ptr->next;
                 if(i==pos-1)
                 {
+                    /*alter the prevnode, prevnode and ptr are the nodes we
+                     * want to sandwich between */
                     prevnode->next = new;
                     new->prev = prevnode;
                     new->next = ptr;
@@ -250,12 +255,89 @@ void insert_at_position()
 
 void sort_list()
 {
+    n *temp;
+    int tempval, i, j;
 
+    if(first == last && first == NULL)
+        printf("\nlinked list is empty no elements to sort");
+    else 
+    {
+        /* store the first value as a ptr */
+        for (ptr = first, i = 0; i < number; ptr = ptr -> next, i++)
+        {
+            /* store the next node as temp */
+            for (temp = ptr->next, j = i ; j < number; j++)
+            {
+                /* store the val in temp and switch numbers if the preceeding
+                 * number is greater than the next */
+                if(ptr->val > temp->val)
+                {
+                    tempval = ptr->val;
+                    ptr->val = temp->val;
+                    temp->val = tempval; 
+                }
+            }
+        }
+        /* print the list in it's new order  */
+        for (ptr = first, i = 0; i < number; ptr = ptr->next, i++)
+            printf("\n%d", ptr->val);
+    }
 }
 
 void delete_node_position()
+    
 {
+    int pos, i;
+    n *prevnode;
 
+    /* prompt the user which position to delete */
+    printf("\nEnter node # you wish to delete");
+    scanf("%d",&pos);
+
+    /* check if list is empty  */
+    if(first == last && first == NULL)
+        printf("\nlinked list is empty, cannot delete specified node");
+    else
+    {
+        /* check to see if number given is within the range of linked list */
+        if(pos > number)
+            printf("\n the node specified is outside of list");
+        else
+        {
+            for(ptr = first, i = 1; i <= number; i++)
+            {
+                /* store ptr as prevnode */
+                prevnode = ptr; 
+                /* update ptr  */
+                ptr = first -> next;
+                /* if pos = 1 delete the first node */
+                if (pos == 1)
+                {
+                    number--;
+                    /* redirect last node->next */
+                    last->next = prevnode->next;
+                    /* redirect 2nd node (now ptr) to the last node in list  */
+                    ptr->prev = prevnode->prev;
+                    /* update first  */
+                    first = ptr;
+                    printf("\n deleted node #%d",pos);
+                    /* free up some space */
+                    free(ptr);
+                    break;
+
+                }
+                else if ( i == pos -1)
+                {
+                    number--;
+                    prevnode->next = ptr->next;
+                    ptr->next->prev = prevnode;
+                    printf("\n deleted node #%d",pos);
+                    free(ptr);
+                    break; 
+                }
+            }
+        }
+    }
 }
 
 
