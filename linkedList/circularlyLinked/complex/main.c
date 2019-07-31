@@ -343,21 +343,78 @@ void delete_node_position()
 
 void update()
 {
+    int oldval, newval, i, f = 0; 
+    printf("\n enter old value: ");
+    scanf("%d", &oldval);
+    printf("\n enter the new value: ");
+    scanf("%d",&newval);
+    if(first == last && first == NULL)
+        printf("\nList is empty and there are no elements to update");
+    else
+    {
+        for(ptr = first, i = 0; i < number; ptr = ptr->next, i++)
+        {
+            if(ptr->val == oldval)
+            {
+                ptr->val = newval;
+                printf("value is updated to %d", ptr->val);
+                f = 1;
+            }
+        }
+        if (f==0)
+            printf("\nThe input value for `old` does not exist");
 
+    }
 }
 
 void search()
 {
+    int count = 0, key, i, f = 0;
+    printf("\n Enter the value to be searched: ");
+    scanf("%d",&key);
 
+    if (first == last && first == NULL)
+        printf("\nlist is empty no elements in list to search");
+    else
+    {
+        for(ptr = first, i =0; i < number; i++, ptr = ptr->next)
+        {
+            count++;
+            if(ptr->val == key)
+            {
+                printf("\n the value is found at position %d", count);
+                f = 1;
+            }
+        }
+        if (f == 0)
+            printf("\n the value is not found in the linked list");
+    }
 }
 
 void display_from_beg()
 {
-
+    int i; 
+    if(first == last && first == NULL)
+        printf("\nlist is empty no elements to print");
+    else
+    {
+        printf("\nThere are %d nodes", number);
+        for(ptr = first, i = 0; i < number; i++, ptr = ptr->next)
+            printf("\n %d", ptr->val);
+    }
 }
 
 void display_in_rev()
 {
+    int i;
+    if (first==last && first == NULL)
+        printf("\nlist is empty there are no elements");
+    else
+    {
+        printf("\n there are %d nodes",number);
+        for(ptr = last, i = 0; i < number; i++, ptr = ptr->prev)
+            printf("\n %d",ptr->val);
+    }
 }
 
 
